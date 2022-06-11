@@ -64,7 +64,7 @@
 					<?php while (have_rows('header_social_media', 'option')) : the_row(); ?>
 
 
-					<a href="<?php the_sub_field('header_url'); ?>" class="linkedin"><?php the_sub_field('header_social_media_icon'); ?></a>
+					<a href="<?php the_sub_field('header_url'); ?>" target= "_blank"class="linkedin"><?php the_sub_field('header_social_media_icon'); ?></a>
 					
 					<?php endwhile; ?>
 				<?php else : ?>
