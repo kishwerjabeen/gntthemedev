@@ -26,6 +26,18 @@ body::before {
   height: 100vh;
   z-index: -1;
 }
+/* custom csss */
+.bio-data-counter{
+  column-count: 2 !important;
+}
+/* Mobile Css */
+@media screen and (min-width:320px) and (max-width:767px){
+  .bio-data-counter{
+    column-count: 1 !important;
+  }
+}
+/* custom css end */
+
 @media (min-width: 1024px) {
   body::before {
     background-attachment: fixed;

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Template part for displaying page content in page.php
  *
@@ -9,46 +10,50 @@
 
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<header class="entry-header">
-		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
-	</header><!-- .entry-header -->
+<!-- ======= About Section ======= -->
+<section id="about" class="about">
 
-	<?php gnttheme_post_thumbnail(); ?>
+	<!-- ======= About Me ======= -->
+	<div class="about-me container">
 
-	<div class="entry-content">
-		<?php
-		the_content();
+		<div class="section-title">
+			<h2>About</h2>
+			<p><?php the_field('about_title', 'option'); ?></p>
+		</div>
 
-		wp_link_pages(
-			array(
-				'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'gnttheme' ),
-				'after'  => '</div>',
-			)
-		);
-		?>
-	</div><!-- .entry-content -->
+		<div class="row">
+			<div class="col-lg-4" data-aos="fade-right">
+				<img src="assets/img/me.jpg" class="img-fluid" alt="">
+			</div>
+			<div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
+				<h3><?php the_field('about_profession_title', 'option'); ?></h3>
+				<p class="fst-italic">
+					<?php the_field('about_profession_description', 'option'); ?>
+				</p>
+				<div class="row">
+					<div class="col-lg-12 p-0 m-0">
 
-	<?php if ( get_edit_post_link() ) : ?>
-		<footer class="entry-footer">
-			<?php
-			edit_post_link(
-				sprintf(
-					wp_kses(
-						/* translators: %s: Name of current post. Only visible to screen readers */
-						__( 'Edit <span class="screen-reader-text">%s</span>', 'gnttheme' ),
-						array(
-							'span' => array(
-								'class' => array(),
-							),
-						)
-					),
-					wp_kses_post( get_the_title() )
-				),
-				'<span class="edit-link">',
-				'</span>'
-			);
-			?>
-		</footer><!-- .entry-footer -->
-	<?php endif; ?>
-</article><!-- #post-<?php the_ID(); ?> -->
+
+						<?php if (have_rows('abouts_bio_data', 'option')) : ?>
+							<ul class="bio-data-counter">
+								<?php while (have_rows('abouts_bio_data', 'option')) : the_row(); ?>
+									<li><i class="bi bi-chevron-right"></i> <strong><?php the_sub_field('about_bio_titles'); ?></strong>
+										<span> <?php the_sub_field('about_bio_details'); ?></span>
+									</li>
+								<?php endwhile; ?>
+							</ul>
+						<?php else : ?>
+							<?php // no rows found 
+							?>
+						<?php endif; ?>
+					</div>
+
+
+				</div>
+				<p>
+				<?php the_field( 'about_profession_description_after_bio', 'option' ); ?>
+				</p>
+			</div>
+		</div>
+
+	</div><!-- End About Me -->
